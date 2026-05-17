@@ -29,7 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        sharedPreferences = getSharedPreferences("LOGIN", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("DATA_MHS", MODE_PRIVATE);
 
 
         etNim = findViewById(R.id.etNim);
@@ -44,6 +44,14 @@ public class DashboardActivity extends AppCompatActivity {
 
         listViewData = findViewById(R.id.listViewData);
 
+        String nim = sharedPreferences.getString("nim", "");
+        String nama = sharedPreferences.getString("nama", "");
+        String prodi = sharedPreferences.getString("prodi", "");
+        String kelas = sharedPreferences.getString("kelas", "");
+        String alamat = sharedPreferences.getString("alamat", "");
+        String email = sharedPreferences.getString("email", "");
+
+
         dataMahasiswa = new ArrayList<>();
 
         adapter = new ArrayAdapter<>(
@@ -53,6 +61,22 @@ public class DashboardActivity extends AppCompatActivity {
         );
 
         listViewData.setAdapter(adapter);
+
+        if(!nim.isEmpty()) {
+
+            String data =
+                    "NIM : " + nim + "\n" +
+                            "Nama : " + nama + "\n" +
+                            "Prodi : " + prodi + "\n" +
+                            "Kelas : " + kelas + "\n" +
+                            "Alamat : " + alamat + "\n" +
+                            "Email : " + email;
+
+            dataMahasiswa.add(data);
+
+            adapter.notifyDataSetChanged();
+
+        }
 
         btnTambah.setOnClickListener(v -> {
 
@@ -65,6 +89,17 @@ public class DashboardActivity extends AppCompatActivity {
                             "Email : " + etEmail.getText().toString();
 
             dataMahasiswa.add(data);
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+
+            editor.putString("nim", etNim.getText().toString());
+            editor.putString("nama", etNama.getText().toString());
+            editor.putString("prodi", etProdi.getText().toString());
+            editor.putString("kelas", etKelas.getText().toString());
+            editor.putString("alamat", etAlamat.getText().toString());
+            editor.putString("email", etEmail.getText().toString());
+
+            editor.apply();
 
             adapter.notifyDataSetChanged();
 
@@ -81,18 +116,25 @@ public class DashboardActivity extends AppCompatActivity {
 
         btnLogout.setOnClickListener(v -> {
 
-            SharedPreferences.Editor editor = sharedPreferences.edit();
+            SharedPreferences loginPref =
+                    getSharedPreferences("LOGIN", MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = loginPref.edit();
 
             editor.clear();
             editor.apply();
 
-            Toast.makeText(this, "Logout Berhasil", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Logout Berhasil",
+                    Toast.LENGTH_SHORT).show();
 
-            Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+            Intent intent =
+                    new Intent(DashboardActivity.this,
+                            LoginActivity.class);
+
             startActivity(intent);
             finish();
 
         });
-
     }
 }
