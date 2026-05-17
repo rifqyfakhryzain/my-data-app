@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dashboard Mahasiswa"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Selamat Datang Admin"
+            android:textSize="18sp"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etNim"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="NIM"/>
+
+        <EditText
+            android:id="@+id/etNama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama"/>
+
+        <EditText
+            android:id="@+id/etProdi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prodi"/>
+
+        <EditText
+            android:id="@+id/etKelas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Kelas"/>
+
+        <EditText
+            android:id="@+id/etAlamat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Alamat"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"/>
+
+        <Button
+            android:id="@+id/btnTambah"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Tambah Data" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"/>
+
+        <ListView
+            android:id="@+id/listViewData"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+
+</ScrollView>
